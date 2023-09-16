@@ -67,7 +67,7 @@ export class CardsEngine {
 
     let cardsInLevel = this.progress.sets[this.currentLevel];
     while (cardsInLevel.length == 0) {
-      this.currentLevel = this.currentLevel + 1 % 5;
+      this.currentLevel = this.currentLevel + (1 % 5);
       cardsInLevel = this.progress.sets[this.currentLevel];
     }
 

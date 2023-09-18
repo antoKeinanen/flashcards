@@ -79,11 +79,17 @@ export class CardsEngine {
   }
 
   bumpCard(level: number) {
+    console.log("cards", this.progress);
+    console.log("bumping", level);
     const cardIndex = this.progress.sets[level].shift();
+    console.log("cardIndex", cardIndex);
     if (cardIndex == undefined) throw new Error("Card not found");
 
     if (level == 4) {
       this.progress.learned.push(cardIndex);
+      
+      if (this.progress.sets[level].length == 0) this.currentLevel = 0;
+
       this.updateLevels();
       return;
     }
@@ -105,6 +111,7 @@ export class CardsEngine {
     this.progress.sets = [[], [], [], [], []];
     this.progress.learned = [];
     this.cards.cards = this.shuffleCards(this.cards.cards);
+    this.currentLevel = 0;
 
     this.cards.cards.forEach((card) => {
       this.progress.sets[0].push(card.index);

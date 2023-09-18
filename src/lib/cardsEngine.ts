@@ -2,12 +2,12 @@ import type { Cards, CardsProgress, FlashCard } from "./cards";
 import { levelsWritable } from "./levelsStore";
 
 export class CardsEngine {
-  cards!: Cards;
-  progress!: CardsProgress;
-  slug!: string;
+  private cards!: Cards;
+  private progress!: CardsProgress;
+  private slug!: string;
   currentLevel = 0;
 
-  shuffleCards<T>(array: T[]): T[] {
+  private shuffleCards<T>(array: T[]): T[] {
     let currentIndex = array.length,
       randomIndex;
 
@@ -38,7 +38,7 @@ export class CardsEngine {
     this.updateLevels();
   }
 
-  findCard(cardIndex: number) {
+  private findCard(cardIndex: number) {
     return this.cards.cards.find((card) => card.index == cardIndex);
   }
 

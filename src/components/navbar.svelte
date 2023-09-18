@@ -1,9 +1,11 @@
 <script lang="ts">
-  import { levelsWritable, showLevels } from "$lib/levelsStore";
+  import cn from "$lib/cn";
+  import { activeLevel, levelsWritable, showLevels } from "$lib/levelsStore";
 
   let levels = [0, 0, 0, 0, 0, 0];
   let show = false;
   const levelNames = ["1", "2", "3", "4", "5", "✓"];
+  let active = 0;
 
   levelsWritable.subscribe((value) => {
     levels = value;
@@ -11,6 +13,10 @@
 
   showLevels.subscribe((value) => {
     show = value;
+  });
+
+  activeLevel.subscribe((value) => {
+    active = value;
   });
 </script>
 
@@ -26,8 +32,8 @@
   {#if show}
     {#each levels as level, i}
       <div class="flex flex-col items-center">
-        <div class="text-stone-50 text-xl font-bold">{levelNames[i]}</div>
-        <div class="text-stone-300 text-lg">{level}</div>
+        <div class={cn("text-stone-50 text-xl font-bold", {"text-green-500": i==active})}>{levelNames[i]}</div>
+        <div class={cn("text-stone-300 text-lg", {"text-green-500": i==active})}>{level}</div>
       </div>
     {/each}
   {/if}

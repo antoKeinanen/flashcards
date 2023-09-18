@@ -5,7 +5,7 @@
   import { CardsEngine } from "$lib/cardsEngine";
   import Flashcard from "../../../components/flashcard.svelte";
   import Button from "../../../components/button.svelte";
-  import { showLevels } from "$lib/levelsStore";
+  import { activeLevel, showLevels } from "$lib/levelsStore";
 
   export let data: { slug: string; };
   const slug = data.slug;
@@ -36,6 +36,7 @@
     
     cardsEngine.bumpCard(cardLevel);
     [card, cardLevel] = cardsEngine.getCard();
+    activeLevel.set(cardsEngine.currentLevel);
   }
 
   const onFail = () => {
@@ -43,6 +44,8 @@
     
     cardsEngine.dropCard(cardLevel);
     [card, cardLevel] = cardsEngine.getCard();
+    activeLevel.set(cardsEngine.currentLevel);
+
   }
 
   const onReset = () => {
@@ -50,6 +53,7 @@
     
     cardsEngine.reset();
     [card, cardLevel] = cardsEngine.getCard();
+    activeLevel.set(cardsEngine.currentLevel);
   }
 </script>
 

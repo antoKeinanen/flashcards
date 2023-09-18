@@ -5,7 +5,6 @@
   import Button from "../components/button.svelte";
   import book from "$lib/assets/book.svg"
   import { MoreVertical, Trash } from 'lucide-svelte';
-  import DropdownMenu from "../components/dropdownMenu.svelte";
 
   let sets: { name: string; length: number, slug: string, learned: number }[] = [];
 

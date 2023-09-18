@@ -6,4 +6,4 @@ export type DropdownOption = {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   icon: SvelteComponent<IconProps, IconEvents, any> | undefined;
   onClick: () => void;
-}
+};

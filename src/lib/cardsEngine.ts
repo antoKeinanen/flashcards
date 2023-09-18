@@ -87,7 +87,7 @@ export class CardsEngine {
 
     if (level == 4) {
       this.progress.learned.push(cardIndex);
-      
+
       if (this.progress.sets[level].length == 0) this.currentLevel = 0;
 
       this.updateLevels();

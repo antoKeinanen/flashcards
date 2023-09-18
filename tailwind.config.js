@@ -21,7 +21,7 @@ export default {
         "primary-dark": "#292524",
         "secondary-light": "#cfd0d1",
         "secondary-dark": "#1c1917",
-      }
+      },
     },
   },
   plugins: [],

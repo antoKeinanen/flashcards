@@ -4,6 +4,7 @@
   import Card from "$lib/../components/card.svelte";
   import { showLevels } from "$lib/levelsStore";
   import { notificationWritable } from "$lib/notificationStore";
+  import Button from "../../../components/button.svelte";
 
   let name = ""
   let set = "";
@@ -65,32 +66,32 @@
   showLevels.set(false);
 </script>
 
-<form class="max-w-5xl p-5" on:submit={onSubmit}>
-  <label for="name" class="text-stone-50">Setin nimi</label>
-  <input bind:value={name} type="text" id="name" class="block w-96 bg-stone-900 border border-stone-700 focus:ring-green-500 focus:ring-2 rounded-md text-stone-100 p-2.5 mb-2.5">
+<form class="max-w-5xl p-5 text-primary-light dark:text-primary-dark" on:submit={onSubmit}>
+  <label for="name" class="">Setin nimi</label>
+  <input bind:value={name} type="text" id="name" class="block w-96 p-2.5 mb-2.5 rounded-md bg-secondary-light text-primary-light border border-primary-light dark:bg-secondary-dark dark:text-primary-dark dark:border-primary-dark">
   <div class="flex gap-5">
     <div>
-      <label for="sides" class="text-stone-50">Puolien välissä</label>
-      <input bind:value={side_separator} type="text" id="sides" class="block w-28 bg-stone-900 border border-stone-700 focus:ring-green-500 focus:ring-2 rounded-md text-stone-100 p-2.5 mb-2.5">
+      <label for="sides">Puolien välissä</label>
+      <input bind:value={side_separator} type="text" id="sides" class="block w-28 p-2.5 mb-2.5 rounded-md bg-secondary-light text-primary-light border border-primary-light dark:bg-secondary-dark dark:text-primary-dark dark:border-primary-dark">
     </div>
     <div>
-      <label for="cards" class="text-stone-50">Korttien välissä</label>
-      <input bind:value={card_separator} type="text" id="cards" class="block w-28 bg-stone-900 border border-stone-700 focus:ring-green-500 focus:ring-2 rounded-md text-stone-100 p-2.5 mb-2.5">
+      <label for="cards">Korttien välissä</label>
+      <input bind:value={card_separator} type="text" id="cards" class="block w-28 p-2.5 mb-2.5 rounded-md bg-secondary-light text-primary-light border border-primary-light dark:bg-secondary-dark dark:text-primary-dark dark:border-primary-dark">
     </div>
   </div>
-  <label for="name" class="text-stone-50">Setin kortit</label>
-  <textarea bind:value={set} id="set" placeholder="" class="block w-full bg-stone-900 border border-stone-700 focus:ring-green-500 focus:ring-2 rounded-md text-stone-100 p-2.5 mb-2.5"/>
-  <input type="submit" value="Tallenna" class="bg-green-500 text-stone-50 rounded-md px-2 py-1 text-lg">
+  <label for="name">Setin kortit</label>
+  <textarea bind:value={set} id="set" placeholder="" class="block w-full p-2.5 mb-2.5 rounded-md bg-secondary-light text-primary-light border border-primary-light dark:bg-secondary-dark dark:text-primary-dark dark:border-primary-dark"/>
+  <Button kind="submit">Luo setti</Button>
 </form>
-<div class="p-5">
+<div class="p-5 text-primary-light dark:text-primary-dark">
   {#if parsed_set.length > 0}
-  <h1 class="text-stone-50 text-2xl mb-5">Esikatselu</h1>
+  <h1 class="text-2xl mb-5">Esikatselu</h1>
   <div class="grid grid-cols-2 gap-2.5">
     {#each parsed_set as card}
       <Card>
-        <h1 class="text-stone-50 text-lg">{card.front}</h1> 
-        <hr class="border-stone-700"/>
-        <p class="text-stone-100">{card.back}</p>
+        <h1 class="text-lg">{card.front}</h1> 
+        <hr class="border-primary-light dark:border-primary-dark mt-1 mb-2.5"/>
+        <p class="text-secondary-light dark:text-secondary-dark">{card.back}</p>
       </Card>
     {/each}
   </div>

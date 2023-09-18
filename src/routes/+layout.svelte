@@ -12,10 +12,10 @@
 </script>
 
 <section class="flex">
-  <nav class="w-1/4 bg-stone-900 p-5 border-r border-stone-700 flex justify-between flex-col">
+  <nav class="w-1/4 p-5 border-r flex justify-between flex-col bg-secondary-light border-primary-light dark:bg-secondary-dark dark:border-primary-dark">
     <Navbar />
   </nav>
-  <main class="min-h-screen bg-stone-800 p-5 w-3/4">
+  <main class="min-h-screen bg-primary-light p-5 w-3/4 dark:bg-primary-dark">
     <slot />
   </main>
 </section>

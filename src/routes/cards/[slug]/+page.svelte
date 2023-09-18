@@ -29,7 +29,7 @@
       console.error(e);
       error = e;
     }
-  });  
+  });
 
   const onCorrect = () => {
     if (cardsEngine == null) throw Error("cardsEngine is null");
@@ -58,7 +58,7 @@
 </script>
 
 {#if error != null}
-  <div class="bg-stone-800 flex text-stone-50 justify-center items-center h-full">
+  <div class="flex text-stone-50 justify-center items-center h-full">
     <Card>
       <h1 class="text-2xl">Error</h1>
       <p class="font-mono">{error}</p>
@@ -66,7 +66,7 @@
   </div>
 
 {:else if card}
-  <div class="bg-stone-800 flex text-stone-50 justify-center items-center h-full">
+  <div class="flex justify-center items-center h-full text-primary-light dark:text-primary-dark">
     <Flashcard>
       <div slot="front" class="flex items-center justify-center h-full">
         {card.front}
@@ -89,7 +89,7 @@
   </div>
 
 {:else}
-  <div class="bg-stone-800 flex text-stone-50 justify-center items-center h-full">
+  <div class="flex justify-center items-center h-full text-primary-light dark:text-primary-dark">
     <Card>
       <h1 class="text-2xl">Loading...</h1>
     </Card>

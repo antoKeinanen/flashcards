@@ -3,15 +3,16 @@
   import { createEventDispatcher } from "svelte";
 
   export let variant: "primary" | "secondary" = "primary";
+  export let kind: "button" | "submit" | "reset" = "button";
 
   const dispatch = createEventDispatcher();
 
   const variants = {
-    primary: "bg-green-700 text-stone-50 hover:bg-green-800",
-    secondary: "bg-stone-800 text-stone-50 hover:bg-stone-700 border border-stone-700"
+    primary: "bg-green-500 text-primary-dark hover:bg-green-400 dark:bg-green-700 dark:hover:bg-green-800",
+    secondary: "bg-primary-light text-primary-light hover:bg-secondary-light border border-primary-light dark:bg-primary-dark dark:text-primary-dark dark:hover:bg-secondary-dark dark:border-primary-dark"
   }
 </script>
 
-<button class={cn("px-2 py-1 rounded-md pointer-events-auto", variants[variant])} on:click={() => dispatch("click")}>
+<button type={kind} class={cn("px-2 py-1 rounded-md pointer-events-auto transition-color duration-200", variants[variant])} on:click|capture={() => dispatch("click")}>
   <slot/>
 </button>

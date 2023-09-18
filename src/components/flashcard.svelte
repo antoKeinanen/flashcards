@@ -5,17 +5,20 @@
     flipped = !flipped;
   }
 
+  const onKeyDown = (e:KeyboardEvent) => {
+    if (e.key === "Enter" || e.key === " ") {
+      flip();
+    }
+  }
+
 </script>
 
-<!-- svelte-ignore a11y-interactive-supports-focus -->
-<!-- svelte-ignore a11y-click-events-have-key-events -->
-<!-- svelte-ignore a11y-no-static-element-interactions -->
-<div class="flip-card" class:flipped-card={flipped} on:click={flip}>
+<div role="button" tabindex="0" class="flip-card" on:keydown={onKeyDown} class:flipped-card={flipped} on:click={flip}>
   <div class="flip-card-inner">
-    <div class="flip-card-front">
+    <div class="flip-card-front absolute h-full w-full rounded-xl text-lg p-8 border border-primary-light dark:bg-secondary-dark bg-secondary-light dark:border-primary-dark">
       <slot name="front"/>
     </div>
-    <div class="flip-card-back">
+    <div class="flip-card-back absolute h-full w-full rounded-xl text-lg p-8 border border-primary-light dark:bg-secondary-dark bg-secondary-light dark:border-primary-dark">
       <slot name="back"/>
     </div>
   </div>
@@ -48,15 +51,14 @@
   }
   
   .flip-card-front, .flip-card-back {
-    @apply bg-stone-900 rounded-xl text-lg p-8 border border-stone-700;
     position: absolute;
     width: 100%;
     height: 100%;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
   }
-  
+
   .flip-card-back {
     transform: rotateX(180deg);
   }
-  </style>
+</style>

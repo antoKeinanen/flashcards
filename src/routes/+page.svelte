@@ -1,10 +1,10 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import Card from "../components/card.svelte";
-  import { showLevels } from "$lib/levelsStore";
+  import { showLevels } from "$lib/data/levelsStore";
   import Button from "../components/button.svelte";
   import book from "$lib/assets/book.svg"
-  import { MoreVertical, Trash } from 'lucide-svelte';
+  import { Trash } from 'lucide-svelte';
 
   let sets: { name: string; length: number, slug: string, learned: number }[] = [];
 
@@ -31,7 +31,7 @@
       localStorage.setItem("uuids", JSON.stringify(uuids));
       sets = sets.filter((set) => set.slug !== deleteSlug); 
     }
-    
+
     window.location.replace("/");
   }
 

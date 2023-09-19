@@ -1,5 +1,5 @@
 import type { Cards, CardsProgress, FlashCard } from "./cards";
-import { levelsWritable } from "./levelsStore";
+import { levelsWritable } from "./data/levelsStore";
 
 export class CardsEngine {
   private cards!: Cards;

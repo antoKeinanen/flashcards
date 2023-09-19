@@ -2,8 +2,8 @@
   import type { Cards, FlashCard } from "$lib/cards";
   import { v4 as uuid } from "uuid";
   import Card from "$lib/../components/card.svelte";
-  import { showLevels } from "$lib/levelsStore";
-  import { notificationWritable } from "$lib/notificationStore";
+  import { showLevels } from "$lib/data/levelsStore";
+  import { notificationWritable } from "$lib/data/notificationStore";
   import Button from "../../../components/button.svelte";
 
   let name = ""

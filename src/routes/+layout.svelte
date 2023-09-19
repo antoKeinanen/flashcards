@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { notificationWritable, type NotificationData } from "$lib/notificationStore";
+  import { notificationWritable, type NotificationData } from "$lib/data/notificationStore";
   import "../app.css";
   import Navbar from "../components/navbar.svelte";
   import Notification from "../components/notification.svelte";

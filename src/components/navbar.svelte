@@ -1,6 +1,6 @@
 <script lang="ts">
   import cn from "$lib/cn";
-  import { activeLevel, levelsWritable, showLevels } from "$lib/levelsStore";
+  import { activeLevel, levelsWritable, showLevels } from "$lib/data/levelsStore";
 
   let levels = [0, 0, 0, 0, 0, 0];
   let show = false;

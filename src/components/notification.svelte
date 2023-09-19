@@ -1,6 +1,6 @@
 <script lang="ts">
   import cn from "$lib/cn";
-  import { notificationWritable } from "$lib/notificationStore";
+  import { notificationWritable } from "$lib/data/notificationStore";
   import Button from "./button.svelte";
 
   export let variant: "success" | "warning" | "error";

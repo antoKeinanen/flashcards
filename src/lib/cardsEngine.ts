@@ -102,6 +102,8 @@ export class CardsEngine {
     const cardIndex = this.progress.sets[level].shift();
     if (cardIndex == undefined) throw new Error("Card not found");
 
+    if (this.progress.sets[level].length == 0) this.currentLevel = 0;
+
     this.progress.sets[0].push(cardIndex);
 
     this.updateLevels();

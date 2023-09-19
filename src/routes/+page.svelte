@@ -20,17 +20,19 @@
   const deleteSet = (e: Event, deleteSlug: string) => {
     e.stopImmediatePropagation();
     e.stopPropagation();
+    
+    if (confirm("Haluatko varmasti poistaa tämän setin?")) {
+      const uuids = JSON.parse(localStorage.getItem("uuids") || "[]");
+      const index = uuids.indexOf(deleteSlug);
+      uuids.splice(index, 1);
 
-    if (!confirm("Haluatko varmasti poistaa tämän setin?")) return;
-
-    const uuids = JSON.parse(localStorage.getItem("uuids") || "[]");
-    const index = uuids.indexOf(deleteSlug);
-    uuids.splice(index, 1);
-
-    localStorage.removeItem(`cards-${deleteSlug}`);
-    localStorage.removeItem(`progress-${deleteSlug}`);
-    localStorage.setItem("uuids", JSON.stringify(uuids));
-    sets = sets.filter((set) => set.slug !== deleteSlug); 
+      localStorage.removeItem(`cards-${deleteSlug}`);
+      localStorage.removeItem(`progress-${deleteSlug}`);
+      localStorage.setItem("uuids", JSON.stringify(uuids));
+      sets = sets.filter((set) => set.slug !== deleteSlug); 
+    }
+    
+    window.location.replace("/");
   }
 
   showLevels.set(false);

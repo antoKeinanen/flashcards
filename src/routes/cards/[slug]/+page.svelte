@@ -6,6 +6,8 @@
   import Flashcard from "../../../components/flashcard.svelte";
   import Button from "../../../components/button.svelte";
   import { activeLevel, showLevels } from "$lib/levelsStore";
+  import Kbd from "../../../components/kbd.svelte";
+  import { ArrowLeft, ChevronLeft, ChevronRight, Space } from "lucide-svelte";
 
   export let data: { slug: string; };
   const slug = data.slug;
@@ -68,18 +70,18 @@
 {:else if card}
   <div class="flex justify-center items-center h-full text-primary-light dark:text-primary-dark">
     <Flashcard>
-      <div slot="front" class="flex items-center justify-center h-full">
+      <div slot="front" class="flex items-center justify-center flex-col h-full">
         {card.front}
       </div>
       <div slot="back" class="flex justify-around flex-col h-full">
         <div></div>
-
         {card.back}
-
-        <div class="flex gap-2.5 justify-center"> 
+        <div class="flex gap-2.5 justify-center flex-col"> 
           {#if card?.index >= 0}
-            <Button on:click={onCorrect}>Osasin</Button>
-            <Button variant="secondary" on:click={onFail}>En Osannut</Button>
+            <div class="flex gap-2 5 justify-center">
+              <Button variant="secondary" on:click={onFail}>En Osannut</Button>
+              <Button on:click={onCorrect}>Osasin</Button>
+            </div>
           {:else}
             <Button on:click={onReset}>Aloita Alusta</Button>
           {/if}
@@ -88,12 +90,21 @@
     </Flashcard>
   </div>
 
+  <div class="absolute bottom-2.5 text-center w-[calc(75%-20px)] text-sm text-secondary-light dark:text-secondary-dark">
+    <Kbd><Space size={10}/></Kbd> Käännä kortti • <Kbd><ChevronLeft size={10}/></Kbd> En osannut • <Kbd><ChevronRight size={10}/></Kbd> Osasin
+  </div>
 {:else}
   <div class="flex justify-center items-center h-full text-primary-light dark:text-primary-dark">
     <Card>
       <h1 class="text-2xl">Loading...</h1>
     </Card>
   </div>
-
 {/if}
 
+<svelte:window on:keydown={e => {
+  if (e.key === "ArrowLeft") {
+    onFail();
+  } else if (e.key === "ArrowRight") {
+    onCorrect();
+  }
+}}/>

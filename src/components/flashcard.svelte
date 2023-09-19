@@ -24,6 +24,7 @@
   </div>
 </div>
 
+<svelte:window on:keydown={onKeyDown} />
 
 <style> 
   .flip-card {

@@ -5,9 +5,10 @@
   import { CardsEngine } from "$lib/cardsEngine";
   import Flashcard from "../../../components/flashcard.svelte";
   import Button from "../../../components/button.svelte";
-  import { activeLevel, showLevels } from "$lib/levelsStore";
+  import { activeLevel, showLevels } from "$lib/data/levelsStore";
   import Kbd from "../../../components/kbd.svelte";
   import { ArrowLeft, ChevronLeft, ChevronRight, Space } from "lucide-svelte";
+  import { flippedWritable } from "$lib/data/cardStore";
 
   export let data: { slug: string; };
   const slug = data.slug;
@@ -37,6 +38,8 @@
     if (cardsEngine == null) throw Error("cardsEngine is null");
     
     cardsEngine.bumpCard(cardLevel);
+
+    flippedWritable.set(false);
     [card, cardLevel] = cardsEngine.getCard();
     activeLevel.set(cardsEngine.currentLevel);
   }
@@ -45,9 +48,10 @@
     if (cardsEngine == null) throw Error("cardsEngine is null");
     
     cardsEngine.dropCard(cardLevel);
+
+    flippedWritable.set(false);
     [card, cardLevel] = cardsEngine.getCard();
     activeLevel.set(cardsEngine.currentLevel);
-
   }
 
   const onReset = () => {
@@ -69,7 +73,7 @@
 
 {:else if card}
   <div class="flex justify-center items-center h-full text-primary-light dark:text-primary-dark">
-    <Flashcard>
+    <Flashcard >
       <div slot="front" class="flex items-center justify-center flex-col h-full">
         {card.front}
       </div>

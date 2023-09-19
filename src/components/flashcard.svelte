@@ -1,8 +1,14 @@
 <script lang="ts">
+  import { flippedWritable } from "$lib/data/cardStore";
+
   let flipped = false;
 
+  flippedWritable.subscribe(value => {
+    flipped = value;
+  });
+
   const flip = () => {
-    flipped = !flipped;
+    flippedWritable.update(value => !value);
   }
 
   const onKeyDown = (e:KeyboardEvent) => {

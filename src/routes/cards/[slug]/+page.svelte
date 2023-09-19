@@ -94,8 +94,16 @@
     </Flashcard>
   </div>
 
-  <div class="absolute bottom-2.5 text-center w-[calc(75%-20px)] text-sm text-secondary-light dark:text-secondary-dark">
-    <Kbd><Space size={10}/></Kbd> Käännä kortti • <Kbd><ChevronLeft size={10}/></Kbd> En osannut • <Kbd><ChevronRight size={10}/></Kbd> Osasin
+  <div class="absolute bottom-2.5 flex justify-center gap-5 w-[calc(75%-40px)] text-sm text-secondary-light dark:text-secondary-dark">
+    <div class="flex flex-col items-center">
+      <Kbd><Space size={10}/></Kbd> Käännä kortti
+    </div>
+    <div class="flex flex-col items-center">
+      <Kbd><ChevronLeft size={10}/></Kbd> En osannut
+    </div>
+    <div class="flex flex-col items-center">
+      <Kbd><ChevronRight size={10}/></Kbd> Osasin
+    </div>
   </div>
 {:else}
   <div class="flex justify-center items-center h-full text-primary-light dark:text-primary-dark">
@@ -106,9 +114,17 @@
 {/if}
 
 <svelte:window on:keydown={e => {
-  if (e.key === "ArrowLeft") {
-    onFail();
-  } else if (e.key === "ArrowRight") {
-    onCorrect();
+  let flipped = false;
+  
+  flippedWritable.subscribe((value) => {
+    flipped = value;
+  });
+
+  if (flipped) {    
+    if (e.key === "ArrowLeft") {
+      onFail();
+    } else if (e.key === "ArrowRight") {
+      onCorrect();
+    }
   }
 }}/>

@@ -7,7 +7,7 @@
   import Button from "../../../components/button.svelte";
   import { activeLevel, showLevels } from "$lib/data/levelsStore";
   import Kbd from "../../../components/kbd.svelte";
-  import { ArrowLeft, ChevronLeft, ChevronRight, Space } from "lucide-svelte";
+  import { ArrowLeft, ChevronLeft, ChevronRight, ChevronUp, Space } from "lucide-svelte";
   import { flippedWritable } from "$lib/data/cardStore";
 
   export let data: { slug: string; };
@@ -61,6 +61,16 @@
     [card, cardLevel] = cardsEngine.getCard();
     activeLevel.set(cardsEngine.currentLevel);
   }
+
+  const onFullyLearnt = () => {
+    if (cardsEngine == null) throw new Error("cardsEngine is null");
+
+    cardsEngine.fullyLearnCard(cardLevel);
+
+    flippedWritable.set(false);
+    [card, cardLevel] = cardsEngine.getCard();
+    activeLevel.set(cardsEngine.currentLevel);
+  }
 </script>
 
 {#if error != null}
@@ -102,6 +112,9 @@
       <Kbd><ChevronLeft size={10}/></Kbd> En osannut
     </div>
     <div class="flex flex-col items-center">
+      <Kbd><ChevronUp size={10}/></Kbd> Osaan varmasti
+    </div>
+    <div class="flex flex-col items-center">
       <Kbd><ChevronRight size={10}/></Kbd> Osasin
     </div>
   </div>
@@ -127,4 +140,9 @@
       onCorrect();
     }
   }
+
+  if (e.key == "ArrowUp") {
+    onFullyLearnt();
+  }
+
 }}/>

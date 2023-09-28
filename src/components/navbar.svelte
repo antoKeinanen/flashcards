@@ -20,7 +20,7 @@
   });
 </script>
 
-<div>
+<div class="select-none">
   <h1 class="text-4xl text-primary-light font-bold mb-5 dark:text-primary-dark">Flashcards</h1>
   <ul class="text-primary-light underline text-lg dark:text-primary-dark">
     <li class="w-fit hover:cursor-pointer hover:text-secondary-light hover:dark:text-secondary-dark"><a href="/">Etusivu</a></li>
@@ -28,7 +28,7 @@
   </ul>
 </div>
 
-<div class="flex justify-around">
+<div class="flex justify-around select-none">
   {#if show}
     {#each levels as level, i}
       <div class="flex flex-col items-center">

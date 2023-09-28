@@ -38,27 +38,28 @@
   showLevels.set(false);
 </script>
 
-
-{#if sets.length !== 0}
-  <h1 class="text-3xl text-primary-light mb-5 dark:text-primary-dark">Kortit</h1>
-  <div class="grid grid-cols-3 gap-2.5 overflow-y-auto">
-    {#each sets as set}
-      <Card onClick={() => window.location.href = `/cards/${set.slug}`} className="hover:cursor-pointer">
-        <div class="float-right">
-          <Button variant="secondary" on:click={(e) => deleteSet(e, set.slug)}>
-            <Trash/>
-          </Button>
-        </div>
-        <h1 class="text-primary-light text-xl dark:text-primary-dark">{set.name}</h1>
-        <hr class="border-primary-light my-2.5 dark:border-primary-dark"/>
-        <p class="text-secondary-light dark:text-secondary-dark">{set.length} korttia • {set.learned} opittu</p>
-      </Card>
-    {/each}
-  </div>
-  {:else}
-  <div class="flex justify-center items-center flex-col w-full h-full text-primary-light dark:text-primary-dark">
-    <h1 class="text-xl">Ei kortteja!</h1>
-    <h2 class="text-lg">Voit luoda uuden <a class="text-green-500 underline" href="/cards/create">Uusi setti</a> sivulla.</h2>
-    <img src={book} alt="" class="h-96 mt-10 opacity-75">
-  </div>
-{/if}
+<section class="p-5">
+  {#if sets.length !== 0}
+    <h1 class="text-3xl text-primary-light mb-5 dark:text-primary-dark">Kortit</h1>
+    <div class="grid grid-cols-3 gap-2.5 overflow-y-auto">
+      {#each sets as set}
+        <Card onClick={() => window.location.href = `/cards/${set.slug}`} className="hover:cursor-pointer">
+          <div class="float-right">
+            <Button variant="secondary" on:click={(e) => deleteSet(e, set.slug)}>
+              <Trash/>
+            </Button>
+          </div>
+          <h1 class="text-primary-light text-xl dark:text-primary-dark">{set.name}</h1>
+          <hr class="border-primary-light my-2.5 dark:border-primary-dark"/>
+          <p class="text-secondary-light dark:text-secondary-dark">{set.length} korttia • {set.learned} opittu</p>
+        </Card>
+      {/each}
+    </div>
+    {:else}
+    <div class="flex justify-center items-center flex-col w-full h-full text-primary-light dark:text-primary-dark">
+      <h1 class="text-xl">Ei kortteja!</h1>
+      <h2 class="text-lg">Voit luoda uuden <a class="text-green-500 underline" href="/cards/create">Uusi setti</a> sivulla.</h2>
+      <img src={book} alt="" class="h-96 mt-10 opacity-75">
+    </div>
+  {/if}
+</section>

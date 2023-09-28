@@ -19,7 +19,7 @@
 
 </script>
 
-<div role="button" tabindex="0" class="flip-card" on:keydown={onKeyDown} class:flipped-card={flipped} on:click={flip}>
+<div role="button" tabindex="0" class="flip-card" on:keydown={onKeyDown} class:flipped-card={flipped} on:mousedown={flip}>
   <div class="flip-card-inner">
     <div class="flip-card-front absolute h-full w-full rounded-xl text-lg p-8 border border-primary-light dark:bg-secondary-dark bg-secondary-light dark:border-primary-dark">
       <slot name="front"/>

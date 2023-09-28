@@ -16,7 +16,7 @@
   >
     <Navbar />
   </nav>
-  <main class="min-h-screen bg-primary-light p-5 w-3/4 dark:bg-primary-dark">
+  <main class="min-h-screen bg-primary-light w-3/4 dark:bg-primary-dark overflow-x-clip">
     <slot />
   </main>
 </section>
